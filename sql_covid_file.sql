@@ -1,4 +1,8 @@
+-- Author: Emanuel de Almeida Alves
+-- Date : 27/12/2022
+
 -- Creating tables to paste Covid deaths CSV file
+
 DROP TABLE if exists covidDeath;
 CREATE TABLE covidDeath(
  iso_code VARCHAR(50),
@@ -130,7 +134,7 @@ Select  *,(Roll_percantege_vac*100/Population) AS porcentage_Vaccinated
 FROM POP_ROLL_VAC
 order by 2,3
 
---Creatinga View for apply in tableau 
+--Creatinga View for tableau 
 CREATE VIEW PERCENTAGEPOPULATIONVACCINATED AS
 SELECT cD.continent, cD.location, cD.date, population, cV.new_vaccinations,
 SUM(new_vaccinations) OVER(PARTITION BY cD.location ORDER BY cD.location,cD.date) AS Roll_percantege_vac
